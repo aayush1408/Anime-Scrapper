@@ -4,7 +4,6 @@ installs = [
         "pip install selenium",
         "pip install bs4",
         "pip install requests"
-        "pip install cssutils"
     ]
 print("Wait for the installations, Its in progress..!!!")
 for install in installs:
