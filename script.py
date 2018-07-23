@@ -28,11 +28,16 @@ rank_list = soup.find_all('strong', {'class':'listItem__rank block center instap
 for rank in rank_list:
     ranks.append(rank.getText())
 
+up_votes_nodes = soup.find_all('div',{'class':'listItem__vote instapaper_ignore'})
+for node in up_votes_nodes[:-1]:
+    votes = node.getText().split(' ')
+    up_votes.append(votes[8])
+    down_votes.append(votes[10])
 
 try:
     writer =  csv.writer(csvfile)
-    writer.writerow(('Rank','Anime','Description'))
+    writer.writerow(('Rank','Anime','Description','Up-Votes','Down-Votes'))
     for i in range(50):
-        writer.writerow((ranks[i],names[i],description[i]))
+        writer.writerow((ranks[i],names[i],description[i],up_votes[i],down_votes[i]))
 finally:
     csvfile.close()
